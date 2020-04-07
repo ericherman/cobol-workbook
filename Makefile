@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 202o Eric Herman <eric@freesa.org>
+
 default: check
 
 COBOL_PREFIX=/home/eric/builds/gnucobol-2.2
