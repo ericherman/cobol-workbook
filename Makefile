@@ -1,6 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 # Copyright (C) 202o Eric Herman <eric@freesa.org>
 
+# $@ : target label
+# $< : the first prerequisite after the colon
+# $^ : all of the prerequisite files
+# $* : wildcard matched part
+
 default: check
 
 COBOL_PREFIX=/home/eric/builds/gnucobol-2.2
@@ -14,16 +19,16 @@ COBC=$(COBOL_PREFIX)/bin/cobc $(COBC_FLAGS)
 COBENV=LD_LIBRARY_PATH=$(COBOL_PREFIX)/lib/
 
 hello: hello.cobol
-	$(COBC) hello.cobol -o hello
+	$(COBC) $< -o $@
 
 check-hello: hello
-	$(COBENV) ./hello
+	$(COBENV) ./$<
 
 hello2: hello2.cobol
-	$(COBC) hello2.cobol -o hello2
+	$(COBC) $< -o $@
 
 check-hello2: hello2
-	$(COBENV) ./hello2
+	$(COBENV) ./$<
 
 check: check-hello check-hello2
 	@echo "ok"
