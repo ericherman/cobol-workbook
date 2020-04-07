@@ -8,6 +8,8 @@
 
 default: check
 
+SHELL=/bin/bash
+
 COBOL_PREFIX=/home/eric/builds/gnucobol-2.2
 
 #  -x                    build an executable program
@@ -22,13 +24,13 @@ hello: hello.cobol
 	$(COBC) $< -o $@
 
 check-hello: hello
-	$(COBENV) ./$<
+	test "`$(COBENV) ./$<`" == "hello, world"
 
 hello2: hello2.cobol
 	$(COBC) $< -o $@
 
 check-hello2: hello2
-	$(COBENV) ./$<
+	test "`$(COBENV) ./$< | tail -n1`" == "MY-ID: 0000000001"
 
 check: check-hello check-hello2
 	@echo "ok"
