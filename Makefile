@@ -10,7 +10,9 @@ default: check
 
 SHELL=/bin/bash
 
-COBOL_PREFIX=/home/eric/builds/gnucobol-2.2
+ifndef ($(COBOL_PREFIX))
+COBOL_PREFIX=$(HOME)/builds/gnucobol-2.2
+endif
 
 #  -x                    build an executable program
 #  -F, -free             use free source format
